@@ -1,6 +1,5 @@
 'use client'
 import Image from 'next/image'
-import { handleClientScriptLoad } from 'next/script'
 import React, {
   useCallback,
   useContext,
@@ -42,7 +41,8 @@ const MainPage = () => {
 
   useEffect(() => {
     if (!runTextRef.current) return
-    runTextRef.current.style.rotate = `${12 + -24 * scrollYDecimal}deg`
+    const rotation = Math.max(12 + -24 * scrollYDecimal, -12)
+    runTextRef.current.style.rotate = rotation + `deg`
   }, [scrollYDecimal])
 
   return (

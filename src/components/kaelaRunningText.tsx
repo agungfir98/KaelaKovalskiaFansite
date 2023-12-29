@@ -3,7 +3,7 @@ import cn from '~/utils/tailwindMerge'
 
 const KaelaRunningText = () => {
   return (
-    <div id="wrapper" className="flex w-[2000px] overflow-hidden">
+    <div id="wrapper" className="flex w-[150vw] overflow-hidden">
       <ul
         id="inner"
         className={cn(
