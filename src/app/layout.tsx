@@ -20,7 +20,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={cn(poppins.className, 'overflow-x-hidden')}>
+      <body
+        className={cn(poppins.className, 'overflow-x-hidden scroll-smooth')}
+      >
         {children}
       </body>
     </html>
