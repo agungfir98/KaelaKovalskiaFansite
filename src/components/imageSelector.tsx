@@ -38,36 +38,32 @@ const ImageSelector = () => {
   }
 
   return (
-    <div className="relative z-50">
-      <div className="fixed bottom-[10%] right-0 ">
-        <ul className="mr-2 flex flex-col gap-2">
-          {imageData.map((v, i) => (
-            <li
-              key={i}
-              onClick={() =>
-                handleChangeCostume({ alt: v.alt, imageUrl: v.url })
-              }
-              className="hover:cursor-pointer"
-            >
-              <div className="flex h-20 w-20 justify-center overflow-hidden rounded-xl outline outline-2 outline-neutral-300 backdrop-blur-md">
-                <div className="relative w-[20rem] translate-y-28 scale-[4]">
-                  <Image
-                    src={v.url}
-                    alt={v.alt}
-                    fill
-                    sizes="100%"
-                    className={cn(
-                      'object-contain',
-                      imageUrl !== v.url && 'blur-[0.4px]',
-                      'transition-all',
-                    )}
-                  />
-                </div>
+    <div className=" mx-2">
+      <ul className="z-50 flex flex-col gap-2">
+        {imageData.map((v, i) => (
+          <li
+            key={i}
+            onClick={() => handleChangeCostume({ alt: v.alt, imageUrl: v.url })}
+            className="hover:cursor-pointer"
+          >
+            <div className="flex h-20 w-20 justify-center overflow-hidden rounded-xl outline outline-2 outline-neutral-300 backdrop-blur-md">
+              <div className="relative w-[20rem] translate-y-28 scale-[4]">
+                <Image
+                  src={v.url}
+                  alt={v.alt}
+                  fill
+                  sizes="100%"
+                  className={cn(
+                    'object-contain',
+                    imageUrl !== v.url && 'blur-[0.4px]',
+                    'transition-all',
+                  )}
+                />
               </div>
-            </li>
-          ))}
-        </ul>
-      </div>
+            </div>
+          </li>
+        ))}
+      </ul>
     </div>
   )
 }
