@@ -6,6 +6,7 @@ import React, {
   useEffect,
   useImperativeHandle,
   useRef,
+  useState,
 } from 'react'
 import { scrollCtx } from '~/utils/scrollObserver'
 import cn from '~/utils/tailwindMerge'
@@ -27,9 +28,10 @@ export const TileWrapper = forwardRef<HTMLDivElement, WrapperProps>(
     const refContainer = useRef<HTMLDivElement>(null)
     useImperativeHandle(ref, () => refContainer.current!, [])
 
+    const [screenH, setscreenH] = useState<number>(0)
+
     const { scrollY } = useContext(scrollCtx)
 
-    const screenH = window.innerHeight
     let currentPage = 0
 
     const { current: elContainer } = refContainer
@@ -45,6 +47,12 @@ export const TileWrapper = forwardRef<HTMLDivElement, WrapperProps>(
 
       currentPage = percentY * numOfPages
     }
+
+    useEffect(() => {
+      if (typeof window !== 'undefined') {
+        setscreenH(window.innerHeight)
+      }
+    }, [])
 
     useEffect(() => {
       const { current: elContainer } = refContainer
@@ -114,7 +122,7 @@ export const Tile: React.FC<TileProps> = ({ page, renderContent }) => {
         opacity,
       }}
     >
-      <div className="mx-2 flex h-screen flex-col md:justify-center max-md:pt-20 md:ml-16">
+      <div className="mx-2 flex h-screen flex-col max-md:pt-20 md:ml-16 md:justify-center">
         {renderContent({ progress })}
       </div>
     </div>
